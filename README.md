@@ -1,14 +1,18 @@
 # Google-Maps-Javascript-API-guide
 
-This is a guide to using Google Maps Javascript API on Rails 4.2.4, with Turbolinks enabled. Initially, when I simply included the Google Maps script inside the `<head>` tag, and then tried to initialize a map...
+This is a guide to using Google Maps Javascript API on Rails 4.2.4, with Turbolinks enabled. Initially, when I simply included the Google Maps script inside the `<head>` tag, and then tried to initialize a map with Javascript...
 
 ```html
+# application.html.erb
+
 <head>
   <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 </head>
 ```
 
 ```javascript
+# application.js
+
 var mapCanvas = document.getElementById('map-canvas');
 var mapOptions = { center: new google.maps.LatLng(3.139003, 101.68685499999992) };
 var map = new google.maps.Map(mapCanvas, mapOptions);
@@ -35,7 +39,7 @@ So when I visited that page, Turbolinks was only changing the content of `<title
 I tried the [jQuery-turbolinks](https://coderwall.com/p/fajmvq/fixing-the-map-doesn-t-show-up-until-i-refresh-when-working-with-turbolinks-in-ruby-on-rails) solution here, but it didn't quite work. Here's what worked for me:
 
 1. **DO NOT** use jQuery-turbolinks.
-2. Use two different events, `$(doument).ready` and `$(document).on('page:load')`
+2. Use two different events, `$(doument).ready` and `$(document).on('page:load')`.
     ```javascript
     // Function to load the Google Maps script with a callback
     var loadGoogleMaps = function() {
