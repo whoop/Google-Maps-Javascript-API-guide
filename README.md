@@ -41,6 +41,8 @@ I tried the [jQuery-turbolinks](https://coderwall.com/p/fajmvq/fixing-the-map-do
 1. **DO NOT** use jQuery-turbolinks.
 2. Use two different events, `$(doument).ready` and `$(document).on('page:load')`.
     ```javascript
+    # application.js
+    
     // Function to load the Google Maps script with a callback
     var loadGoogleMaps = function() {
       var script = document.createElement('script');
