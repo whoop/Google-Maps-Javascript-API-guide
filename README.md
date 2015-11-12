@@ -1,6 +1,14 @@
 # Google-Maps-Javascript-API-guide
 
-This is a guide to using Google Maps Javascript API on Rails 4.2.4, with Turbolinks enabled. Initially, when I simply included the Google Maps script inside the `<head>` tag, I kept getting this error:
+This is a guide to using Google Maps Javascript API on Rails 4.2.4, with Turbolinks enabled. Initially, when I simply included the Google Maps script inside the `<head>` tag, 
+
+```html
+<head>
+  <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+</head>
+```
+
+I kept getting this error:
 
 ```Uncaught ReferenceError: google is not defined```
 
