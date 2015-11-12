@@ -1,6 +1,6 @@
 # Google-Maps-Javascript-API-guide
 
-This is a guide to using Google Maps Javascript API on Rails 4.2.4, with Turbolinks enabled. Initially, when I simply included the Google Maps script inside the `<head>` tag, 
+This is a guide to using Google Maps Javascript API on Rails 4.2.4, with Turbolinks enabled. Initially, when I simply included the Google Maps script inside the `<head>` tag, and then tried to initialize a map...
 
 ```html
 <head>
@@ -8,19 +8,15 @@ This is a guide to using Google Maps Javascript API on Rails 4.2.4, with Turboli
 </head>
 ```
 
-I kept getting this error:
-
-```Uncaught ReferenceError: google is not defined```
-
-This error was occurring because I was trying to create the map...
-
 ```javascript
 var mapCanvas = document.getElementById('map-canvas');
 var mapOptions = { center: new google.maps.LatLng(3.139003, 101.68685499999992) };
 var map = new google.maps.Map(mapCanvas, mapOptions);
 ```
 
-...before the Google Maps Javascript files had been loaded. The solution I used was to append a `callback` parameter when loading Google Maps script: `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&callback=init` where `init` was a function expression that created the map:
+...I kept getting the error: `Uncaught ReferenceError: google is not defined`. This was because I was trying to create the map *before* the Google Maps Javascript files had been loaded.
+
+The solution was to append a `callback` parameter when loading Google Maps script: `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&callback=init` where `init` was a function expression that created the map:
 
 ```javascript
 var init = function() {
